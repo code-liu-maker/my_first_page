@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			<meta charset="utf-8">
+			    <title>电影推荐</title>
+			    <style>
+			        * {
+/* 						重置默认样式,简单清除边距,设置盒模型
+ */			            margin: 0;
+			            padding: 0;
+			            box-sizing: border-box;
+			        }
+			
+			        body {
+			            font-family: "微软雅黑";
+			            background-color: #1b1b1b;
+						color: white;
+			            padding: 30px;
+			        }
+			
+			        /* 头部导航 */
+			        .header {
+			            background-color: black;
+			            position: fixed;
+			            top: 0;
+			            left: 0;
+			            width: 100%;
+			            padding: 10px 20px;/* 上下10,左右20 */
+			        }
+			
+			        .header ul {
+			            list-style: none;
+			            display: flex;/* 一行排列 */
+			            align-items: center;/* 交叉轴上的对齐方式 */
+			            height: 50px;
+			        }
+			
+			        .header h1 {
+			            color: red;
+			            margin-right: 20px;
+			        }
+			
+			        .header li a {
+			            color: white;
+			            text-decoration: none;
+			            margin-right: 15px;
+			        }
+					.header ul li:hover{color: #06c;}
+					
+			
+			        /* 主内容容器 */
+			        .main {
+			            margin-top: 80px; /* 避开导航栏高度 */
+			        }
+			
+			        /* 通用标题样式 */
+			        .section-title {
+			            margin: 30px 0 15px;/* 上,左右,下 */
+			        }
+			
+			        /* 分割线 */
+			        .line {
+			            height: 2px;
+			            background-color: red;
+			            border: none;
+			            margin-bottom: 20px;
+			        }
+			
+			
+			        .movie-title {
+			            padding: 10px;
+			            text-align: center;
+			            font-size: 16px;
+			            white-space: nowrap; /* 文字不换行 */
+			            overflow: hidden; /* 超出隐藏 */
+			            text-overflow: ellipsis; /* 显示省略号 */
+			        }
+					
+			
+			        /* 单个排名行容器 */
+			        .rank-item {
+						
+			            display: flex;/* 弹性布局 */
+			            align-items: center;
+			            background-color: #2c2c2c; /* 条目背景 */
+			            border-radius: 6px;/* 四边角变圆 */
+			            padding: 12px 16px;
+			            margin-bottom: 10px;
+			            
+			        }
+			
+			        /* 鼠标悬浮高亮 */
+			        .rank-item:hover {
+			            background-color: #3c3c3c;
+			        }
+			
+			        /* 排名数字样式 */
+			        .rank-number {
+			            width: 36px;
+			            height: 36px;
+			            background-color: #f39c12;
+			            color: #000;
+			            font-weight: bold;/* 加粗 */
+			            font-size: 16px;
+			            display: flex;/* 弹性布局 */
+			            justify-content: center;/* 使所有子元素在水平方向上集中排列在容器的中心位置，左右两侧留有相等的空白空间。 */
+			            align-items: center;
+			            border-radius: 50%;/* 变圆型 */
+			            margin-right: 14px;
+			        }
+			
+			        /* 电影信息容器 */
+			        .movie-details {
+			            display: flex;
+			            height: 70px;
+			        }
+			
+			        /* 电影标题 */
+			        .movie-title {
+			            font-size: 18px;
+			            margin-bottom: 4px;
+			            font-weight: 600;
+			        }
+			
+			        /* 电影元数据（标签、年份等） */
+			        .movie-meta {
+			            font-size: 14px;
+			            color: white;
+			            line-height: 1.4;
+			        }
+					
+				  .line{border: none;
+				  height: 2px;
+				  background-color: red;}  
+				  
+
+				  /* 电影名称 */
+				  .movie-title {
+					  font-size: 16px;
+					  line-height: 1.4;
+					  text-align: left;
+				  }
+				  
+				  /* 订阅表单 */
+				  .subscribe-form {
+				      max-width: 600px;
+				      margin: 0 200px 10px 400px;
+				      padding: 20px;
+				      background-color: #f8f8f8;
+				      border-radius: 5px; 
+					 
+				  }
+				  
+				  .form-group {
+				      margin-bottom: 20px;
+					  
+				  }
+				  
+				  .form-group label {
+				      display: block;
+				      margin-bottom: 8px;
+				      font-weight: bold;
+					  
+				  }
+				  
+				  .form-group input{
+				  	width: 90%;
+				      
+				  	padding: 10px;
+				  }
+				         
+				  .form-group textarea {
+					 
+				      width: 100%;
+				      padding: 10px;
+				      border: 1px solid #ddd;
+				      border-radius: 3px;
+				      font-size: 16px;
+				  }
+				  
+				  .checkbox-group {
+					 
+				      display: flex;/* 弹性布局 */
+				      gap: 15px;
+				  }
+				  
+				  .checkbox-group label {
+					  
+				      display: flex;
+				      align-items: center;
+				      font-weight: normal;
+				     
+				  }
+				  
+				  .checkbox-group input {
+				      margin-right: 5px;
+				  }
+				  
+				  .submit-btn {
+				      background-color: #e50914;
+				      color: white;
+				      border: none;
+				      padding: 12px 25px;
+				      font-size: 16px;
+				      border-radius: 3px;
+				      
+				  }
+				  .subscribe-form label{color: black;}
+				  
+				  /* 页脚 */
+				  .footer {
+					  background-color: #1a1a1a;
+					  color: #999;
+					  padding: 30px 0;
+				  }
+				  
+				  .footer-links ul {
+					  display: flex;
+					  justify-content: center;
+					  margin-bottom: 20px;
+				  }
+				  
+				  .footer-links li {
+					  margin: 0 15px;
+				  }
+				  
+				  .footer-links a {
+					  color: #999;
+					  
+				  }
+				  
+				  .footer-links a:hover {
+					  color: white;
+				  }
+				  
+				  .copyright {
+					  text-align: center;
+					  font-size: 14px;
+				  }
+				  label{color: white;}
+		</style>
+	</head>
+	<body>
+		<!-- 头部导航 -->
+		<header class="header">
+		    
+		        
+		        <div class="header">
+		            <ul>
+						<h1 class="logo">电影天堂</h1>
+						<li><a href="#nav">首页排行榜</a></li>
+		                <li><a href="good movies.html">好片推荐</a></li>
+						<li><a href="hot recommend.html">热门电影</a></li>
+		                <li><a href="#nav3">订阅最新电影资讯</a></li>
+		            </ul>
+					
+		    </div>
+		</header>
+		<!-- 中间导航 -->
+		<div class="main">
+			 
+			    <h2 id="nav">首页排行榜</h2>
+				<hr class="line"/>
+			    <!-- 第1名 -->
+			    <div class="rank-item">
+					
+			        <div class="rank-number">1</div>
+			        <div class="movie-details">
+			            <div class="movie-title">猎金游戏</div>
+			            <div class="movie-meta">实时热度超1.8万 | 金融题材 商界风云 心灵成长 <br>2025 内地 | 刘德华 欧豪 倪妮 黄奕 蒋梦婕</div>
+			        </div>
+			    </div>
+			
+			    <!-- 第2名 -->
+			    <div class="rank-item">
+			        <div class="rank-number">2</div>
+			        <div class="movie-details">
+			            <div class="movie-title">哪吒之魔童降世</div>
+			            <div class="movie-meta">中国电影金鸡奖 | 在追破200万 | 实时热度超1万 <br>2019 内地</div>
+			        </div>
+			    </div>
+			
+			    <!-- 第3名 -->
+			    <div class="rank-item">
+			        <div class="rank-number">3</div>
+			        <div class="movie-details">
+			            <div class="movie-title">哪吒之魔童闹海</div>
+			            <div class="movie-meta">预约破1100万 | 特效炸裂 英雄成长 神话传说 <br>2025 内地</div>
+			        </div>
+			    </div>
+			
+			    <!-- 第4名 -->
+			    <div class="rank-item">
+			        <div class="rank-number">4</div>
+			        <div class="movie-details">
+			            <div class="movie-title">分手清单</div>
+			            <div class="movie-meta">爱情喜剧 相爱相杀 <br>2025 内地 | 欧豪 曾梦雪 周游 程潇 徐梦洁 肖凯中</div>
+			        </div>
+			    </div>
+			
+			    <!-- 第5名 -->
+			    <div class="rank-item">
+			        <div class="rank-number">5</div>
+			        <div class="movie-details">
+			            <div class="movie-title">酱园弄·悬案</div>
+			            <div class="movie-meta">真实事件改编 上海话 <br>2024 内地 | 章子怡 王传君 易烊千玺 梅婷 赵丽颖 雷佳音...</div>
+			        </div>
+			    </div>
+			
+			    <!-- 第6名 -->
+			    <div class="rank-item">
+			        <div class="rank-number">6</div>
+			        <div class="movie-details">
+			            <div class="movie-title">雄狮少年2</div>
+			            <div class="movie-meta">实时热度超1.1万 | 青春励志 动画电影 国漫电影 <br>2024 内地</div>
+			        </div>
+			    </div>
+			
+			    <!-- 第7名 -->
+			    <div class="rank-item">
+			        <div class="rank-number">7</div>
+			        <div class="movie-details">
+			            <div class="movie-title">疯狂动物城</div>
+			            <div class="movie-meta">奥斯卡金像奖 | 动物冒险 动画电影 合家欢 <br>2016 美国</div>
+			        </div>
+					
+				</div>
+		</div>
+			
+			
+		
+		<!-- 订阅表单 -->
+		<div class="subscribe">
+		    <h2 id="nav3" class="section-title">订阅最新电影资讯</h2>
+		    <form class="subscribe-form">
+		        <div class="form-group">
+		            <label for="name">姓名:</label>
+		            <input type="text" id="name" name="name">
+		        </div>
+		        <div class="form-group">
+		            <label for="email">邮箱:</label>
+		            <input type="email" id="email" name="email">
+		        </div>
+		        <div class="form-group">
+		            <label>偏好类型:</label>
+		            <div class="checkbox-group">
+		                <label><input type="checkbox" name="group" value="action"> 动作</label>
+		                <label><input type="checkbox" name="group" value="comedy"> 喜剧</label>
+		                <label><input type="checkbox" name="group" value="sci-fi"> 科幻</label>
+		                <label><input type="checkbox" name="group" value="romance"> 爱情</label>
+		            </div>
+		        </div>
+		        <button type="submit" class="submit-btn">订阅</button>
+		    </form>
+		</div>
+		
+		
+		<!-- 页脚 -->
+		<footer class="footer">
+		    <div class="container">
+		        <div class="footer-links">
+		            <ul>
+		                <li>关于我们</li>
+		                <li>联系方式</li>
+		                <li>版权声明</li>
+		                <li>隐私政策</li>
+		            </ul>
+		        </div>
+		        <p class="copyright">© 2023 电影天堂 版权所有</p >
+		    </div>
+		</footer>
+		
+	</body>
+</html>

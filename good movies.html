@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>
+		</title>
+		<style>
+			
+			.section-title {
+			    margin: 30px 0 15px;/* 上,左右,下 */
+			}
+			
+			.hot-recommend h2{
+									
+			  margin-top: 30px;
+			  margin-botom: 15px;
+								}
+						
+			.line{border: none;
+			height: 2px;
+			background-color: red;}  
+			
+			/* 一行多列布局核心样式 */
+			.movie-grid {
+				
+			    display: flex; /* 使用Flex布局,自动排列和调整大小 */
+			    flex-wrap: wrap;/* 自动换行 */
+			    gap: 20px; /* 元素间距 */
+			}
+			.movie-grid a{text-decoration: none;}
+			
+			.movie-card:hover {
+								  transform: scale(1.05); /* 鼠标悬浮放大 */
+			}
+			.movie-card a{
+								  color: #fff;/* a标签里的字体设置成白色 */
+			}
+			/* 单个电影卡片 */
+			.movie-card {
+			    width: calc(33.33% - 13.33px); /* calc（）是设置元素宽度，图片宽度占其33.33%减去13.33像素 */
+			    background-color: #2c2c2c;
+				color: white;
+			    border-radius: 8px;
+			    overflow: hidden;/* 图片溢出裁剪 */
+			    
+			}
+						
+			.movie-card img {
+			    width: 100%; /* 图片自适应容器宽度 */
+			    height: 200px; /* 固定高度，避免图片变形 */
+			    object-fit: cover; /* 保持比例并裁剪多余部分 */
+			    display: block;
+			}
+			/* 电影名称 */
+			.movie-title {
+								  font-size: 16px;
+								  line-height: 1.4;
+								  text-align: left;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 好片推荐 -->
+			<div class="hot-recommend">
+		    <h2 class="section-title"><span id="nav1">好片推荐</span></h2>
+			<hr class="line"/>
+			
+		    <div class="movie-grid"> <!-- 使用movie-grid类实现列多布局 -->
+			
+		            <div class="movie-card">
+		            <a href="detail1.html">
+		                <img src="img2/liu.jpg"/>
+		                <h3>流浪地球2</h3>
+		                <p class="rating">评分: 9.2</p >
+		            </a >
+		        </div>
+				
+		        <div class="movie-card">
+		            <a href="detail2.html">
+		                <img src="img2/xxx.jpg"/>
+		                <h3>肖申克的救赎</h3>
+		                <p class="rating">评分: 9.7</p >
+		            </a >
+						
+		        </div>
+		        <div class="movie-card">
+		            <a href="detail3.html">
+		                <img src="img2/深海.jpg"/>
+		                <h3>深海</h3>
+		                <p class="rating">评分: 8.1</p >
+		            </a >
+						
+		        </div>
+		        <div class="movie-card">
+		            <a href="detail4.html">
+		               <img src="img2/无名.jpg"/>
+		                <h3>无名</h3>
+		                <p class="rating">评分: 8.3</p >
+		            </a >
+		        </div>
+				
+		    </div>
+			<a href="主体部分.html"><img src="img2/fanhui.jpg"/></a>
+		</div>
+	</body>
+</html>
